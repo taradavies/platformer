@@ -19,7 +19,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+
+        // enables friction
+
+        if (Mathf.Abs(horizontalInput) >= 1)
+            rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
 
         // flip only if we're pressing down a key
         if (horizontalInput != 0)
