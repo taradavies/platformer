@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 52028991}
   - component: {fileID: 52028990}
   - component: {fileID: 52028989}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: One-Way Platform (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 64215502}
   - component: {fileID: 64215501}
   - component: {fileID: 64215500}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: One-Way Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,7 +376,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 257918777}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -483,6 +483,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &367450037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 367450038}
+  m_Layer: 6
+  m_Name: Ground Check
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &367450038
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367450037}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.01, y: -0.67, z: -2.8531728}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1485512244}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &466559841
 GameObject:
@@ -810,7 +840,7 @@ GameObject:
   - component: {fileID: 683385995}
   - component: {fileID: 683385994}
   - component: {fileID: 683385993}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: One-Way Platform (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -939,7 +969,7 @@ GameObject:
   - component: {fileID: 694928056}
   - component: {fileID: 694928055}
   - component: {fileID: 694928054}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: One-Way Platform (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1163,7 +1193,7 @@ GameObject:
   - component: {fileID: 1243002163}
   - component: {fileID: 1243002162}
   - component: {fileID: 1243002161}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: One-Way Platform (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1417,7 +1447,7 @@ GameObject:
   - component: {fileID: 1485512247}
   - component: {fileID: 1485512248}
   - component: {fileID: 1485512246}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1483,9 +1513,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485512242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.4, y: 0.71, z: 0}
+  m_LocalPosition: {x: -8.4, y: 1.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 367450038}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1538,9 +1569,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a717d5fe06b0934c8cc50e690b372ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheck: {fileID: 367450038}
+  radius: 0.2
+  mask:
+    serializedVersion: 2
+    m_Bits: 1
   moveSpeed: 4
   jumpForce: 250
-  maxJumps: 2
+  extraJumps: 1
 --- !u!95 &1485512248
 Animator:
   serializedVersion: 3

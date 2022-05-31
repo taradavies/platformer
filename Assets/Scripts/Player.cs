@@ -3,14 +3,20 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    // ground check fields
+    [SerializeField] Transform groundCheck;
+    [SerializeField] float radius = 0.2f;
+    [SerializeField] LayerMask mask;
+
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpForce = 200f;
-    [SerializeField] int maxJumps;
+    [SerializeField] int extraJumps;
     int jumpsRemaining;
     Rigidbody2D rb;
     Animator controller;
     SpriteRenderer spriteRenderer;
     Vector2 startingPos;
+    bool isGrounded;
 
     void Awake()
     {
@@ -21,15 +27,23 @@ public class Player : MonoBehaviour
 
     void Start() {
         startingPos = transform.position;
-        jumpsRemaining = maxJumps;
+        jumpsRemaining = extraJumps;
     }
 
     void Update()
     {
+        // read player input
         float horizontalInput = Input.GetAxisRaw("Horizontal");
+        
+        // set the isGrounded variable
+        isGrounded = IsGrounded();
+
+        // reset the max jumps
+        if (isGrounded) {
+            jumpsRemaining = extraJumps;
+        }
 
         // enables friction
-
         if (Mathf.Abs(horizontalInput) >= 1)
             rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
 
@@ -37,14 +51,27 @@ public class Player : MonoBehaviour
         if (horizontalInput != 0)
             spriteRenderer.flipX = horizontalInput < 0;
 
+        // animate movement
         bool isWalking = horizontalInput!=0;
         Animate(isWalking);
 
-        if (Input.GetButtonDown("Jump") && jumpsRemaining > 0) {
+        // checks for jumps
+        if (Input.GetButtonDown("Jump") && isGrounded) {
             ExecuteJump();
         }
+        // double jumps
+        else if (Input.GetButtonDown("Jump") && jumpsRemaining > 0) {
+            ExecuteJump();
+        }
+
     }
-    
+
+    bool IsGrounded()
+    {
+       var hit = Physics2D.OverlapCircle(groundCheck.position, radius, mask);
+       return hit;
+    }
+
     public void ResetToStart()
     {
         transform.position = startingPos;
@@ -59,8 +86,5 @@ public class Player : MonoBehaviour
     void Animate(bool isWalking) {
         controller.SetBool("isWalking", isWalking);
     }
-
-    void OnCollisionEnter2D(Collision2D collision) {
-        jumpsRemaining = maxJumps;
-    }
+    
 }
