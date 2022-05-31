@@ -805,7 +805,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 669538516}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Grounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1321,7 +1321,7 @@ GameObject:
   - component: {fileID: 1406678686}
   - component: {fileID: 1406678685}
   - component: {fileID: 1406678687}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1573,9 +1573,11 @@ MonoBehaviour:
   radius: 0.2
   mask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 128
+  coyoteTime: 0.2
+  jumpBufferTime: 0.2
   moveSpeed: 4
-  jumpForce: 250
+  jumpForce: 300
   extraJumps: 1
 --- !u!95 &1485512248
 Animator:
@@ -1693,7 +1695,7 @@ GameObject:
   - component: {fileID: 2108704023}
   - component: {fileID: 2108704022}
   - component: {fileID: 2108704021}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Snow Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
