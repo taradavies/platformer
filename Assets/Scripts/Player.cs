@@ -8,10 +8,19 @@ public class Player : MonoBehaviour
     [SerializeField] float radius = 0.2f;
     [SerializeField] LayerMask mask;
 
+    // coyote and jump buffer
+
+    [SerializeField] float coyoteTime = 0.2f;
+    float coyoteTimeCounter;
+
+    [SerializeField] float jumpBufferTime = 0.2f;
+    float jumpBufferCounter;
+
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpForce = 200f;
     [SerializeField] int extraJumps;
     int jumpsRemaining;
+
     Rigidbody2D rb;
     Animator controller;
     SpriteRenderer spriteRenderer;
@@ -43,6 +52,10 @@ public class Player : MonoBehaviour
             jumpsRemaining = extraJumps;
         }
 
+        // coyote time and jump buffer
+        IncrementCoyoteTimer();
+        IncrementJumpBufferCounter();
+
         // enables friction
         if (Mathf.Abs(horizontalInput) >= 1)
             rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
@@ -56,14 +69,42 @@ public class Player : MonoBehaviour
         Animate(isWalking);
 
         // checks for jumps
-        if (Input.GetButtonDown("Jump") && isGrounded) {
+        if (coyoteTimeCounter > 0 && jumpBufferCounter > 0) {
             ExecuteJump();
+            jumpBufferCounter = 0;
         }
         // double jumps
         else if (Input.GetButtonDown("Jump") && jumpsRemaining > 0) {
             ExecuteJump();
         }
 
+        // for variable jump
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            coyoteTimeCounter = 0;
+        }  
+
+    }
+
+    void IncrementJumpBufferCounter()
+    {
+        if (Input.GetButtonDown("Jump")) {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+    }
+
+    void IncrementCoyoteTimer()
+    {
+        if (isGrounded) {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
     }
 
     bool IsGrounded()
