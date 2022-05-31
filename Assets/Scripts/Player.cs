@@ -5,6 +5,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpForce = 200f;
+    [SerializeField] int maxJumps;
+    int jumpsRemaining;
     Rigidbody2D rb;
     Animator controller;
     SpriteRenderer spriteRenderer;
@@ -19,6 +21,7 @@ public class Player : MonoBehaviour
 
     void Start() {
         startingPos = transform.position;
+        jumpsRemaining = maxJumps;
     }
 
     void Update()
@@ -37,7 +40,7 @@ public class Player : MonoBehaviour
         bool isWalking = horizontalInput!=0;
         Animate(isWalking);
 
-        if (Input.GetButtonDown("Jump")) {
+        if (Input.GetButtonDown("Jump") && jumpsRemaining > 0) {
             ExecuteJump();
         }
     }
@@ -49,10 +52,15 @@ public class Player : MonoBehaviour
 
     private void ExecuteJump()
     {
-        rb.AddForce(Vector2.up * jumpForce);
+        jumpsRemaining--;
+        rb.AddForce(Vector2.up * jumpForce); 
     }
 
     void Animate(bool isWalking) {
         controller.SetBool("isWalking", isWalking);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision) {
+        jumpsRemaining = maxJumps;
     }
 }
