@@ -8,12 +8,17 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     Animator controller;
     SpriteRenderer spriteRenderer;
+    Vector2 startingPos;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         controller = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    void Start() {
+        startingPos = transform.position;
     }
 
     void Update()
@@ -35,6 +40,11 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Jump")) {
             ExecuteJump();
         }
+    }
+    
+    public void ResetToStart()
+    {
+        transform.position = startingPos;
     }
 
     private void ExecuteJump()

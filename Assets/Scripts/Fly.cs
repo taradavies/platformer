@@ -24,4 +24,11 @@ public class Fly : MonoBehaviour
         }
             
     }
+
+    void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.gameObject.TryGetComponent<Player>(out var player)) {
+            player.ResetToStart();
+        }
+    }
+
 }
