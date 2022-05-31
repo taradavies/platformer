@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,16 +13,19 @@ public class Flag : MonoBehaviour
    void OnTriggerEnter2D(Collider2D collider) {
        if (collider.TryGetComponent<Player>(out var player)) {
            controller.SetTrigger("Raise");
-           Invoke("LoadNextLevel", waitTime);
+           StartCoroutine(LoadNextLevel());
        }
    } 
 
-   void LoadNextLevel() {
+    IEnumerator LoadNextLevel() {
+        yield return new WaitForSeconds(waitTime);
        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
        if (sceneIndex >= SceneManager.sceneCount) {
            SceneManager.LoadScene(0);
-           return;
        }
-       SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+       else {
+          SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1); 
+       }
    }
+   
 }
