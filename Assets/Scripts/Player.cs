@@ -33,24 +33,20 @@ public class Player : MonoBehaviour
         controller = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
     void Start() {
         startingPos = transform.position;
         jumpsRemaining = extraJumps;
     }
-
     void Update()
     {
         // read player input
         float horizontalInput = Input.GetAxisRaw("Horizontal");
-        
+
         // set the isGrounded variable
         isGrounded = IsGrounded();
 
-        // reset the max jumps
-        if (isGrounded) {
-            jumpsRemaining = extraJumps;
-        }
+        // reset the max jumps if we're grounded
+        ResetCurrentJumps();
 
         // coyote time and jump buffer
         IncrementCoyoteTimer();
@@ -65,67 +61,71 @@ public class Player : MonoBehaviour
             spriteRenderer.flipX = horizontalInput < 0;
 
         // animate movement
-        bool isWalking = horizontalInput!=0;
+        bool isWalking = horizontalInput != 0;
         Animate(isWalking);
 
         // checks for jumps
-        if (coyoteTimeCounter > 0 && jumpBufferCounter > 0) {
+        if (coyoteTimeCounter > 0 && jumpBufferCounter > 0)
+        {
             ExecuteJump();
             jumpBufferCounter = 0;
         }
-        // double jumps
-        else if (Input.GetButtonDown("Jump") && jumpsRemaining > 0) {
+        else if (ShouldDoubleJump())
+        {
             ExecuteJump();
         }
 
-        // for variable jump
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        if (ShouldVariableJump())
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-            coyoteTimeCounter = 0;
-        }  
+            VariableJump();
+        }
 
     }
 
+    void ResetCurrentJumps()
+    {
+        if (isGrounded)
+        {
+            jumpsRemaining = extraJumps;
+        }
+    }
+
+    void VariableJump()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        coyoteTimeCounter = 0;
+    }
+
+    bool ShouldDoubleJump() => Input.GetButtonDown("Jump") && jumpsRemaining > 0;
+    bool ShouldVariableJump() => Input.GetButtonUp("Jump") && rb.velocity.y > 0f;
+    bool IsGrounded() => Physics2D.OverlapCircle(groundCheck.position, radius, mask);
+    void Animate(bool isWalking) => controller.SetBool("isWalking", isWalking);
+
     void IncrementJumpBufferCounter()
     {
-        if (Input.GetButtonDown("Jump")) {
-            jumpBufferCounter = jumpBufferTime;
-        }
-        else {
-            jumpBufferCounter -= Time.deltaTime;
-        }
+        if (Input.GetButtonDown("Jump")) 
+            jumpBufferCounter = jumpBufferTime;  
+        else 
+            jumpBufferCounter -= Time.deltaTime;   
     }
 
     void IncrementCoyoteTimer()
     {
-        if (isGrounded) {
+        if (isGrounded) 
             coyoteTimeCounter = coyoteTime;
-        }
-        else {
-            coyoteTimeCounter -= Time.deltaTime;
-        }
-    }
-
-    bool IsGrounded()
-    {
-       var hit = Physics2D.OverlapCircle(groundCheck.position, radius, mask);
-       return hit;
+        else 
+            coyoteTimeCounter -= Time.deltaTime; 
     }
 
     public void ResetToStart()
     {
         transform.position = startingPos;
+        rb.velocity = Vector2.zero;
     }
 
-    private void ExecuteJump()
+    void ExecuteJump()
     {
         jumpsRemaining--;
         rb.AddForce(Vector2.up * jumpForce); 
     }
-
-    void Animate(bool isWalking) {
-        controller.SetBool("isWalking", isWalking);
-    }
-    
 }
