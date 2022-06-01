@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Player Number")]
+    [SerializeField] [Range(1,2)] int playerNumber =1;
+
     [Header("Ground Check")]
     [SerializeField] Transform groundCheck;
     [SerializeField] float radius = 0.2f;
@@ -52,8 +55,8 @@ public class Player : MonoBehaviour
         // reset the max jumps if we're grounded
         ResetCurrentJumps();
 
-        // read player input and move
-        horizontalInput = Input.GetAxis("Horizontal");
+        // read player input and move 
+        horizontalInput = Input.GetAxis($"P{playerNumber}Horizontal");
         if (platformIsSlippery) 
             Slip();
         else 
@@ -119,8 +122,8 @@ public class Player : MonoBehaviour
         coyoteTimeCounter = 0;
     }
 
-    bool ShouldDoubleJump() => Input.GetButtonDown("Jump") && jumpsRemaining > 0;
-    bool ShouldVariableJump() => Input.GetButtonUp("Jump") && rb.velocity.y > 0f;
+    bool ShouldDoubleJump() => Input.GetButtonDown($"P{playerNumber}Jump") && jumpsRemaining > 0;
+    bool ShouldVariableJump() => Input.GetButtonUp($"P{playerNumber}Jump") && rb.velocity.y > 0f;
     void IsGrounded() {
         var ground = Physics2D.OverlapCircle(groundCheck.position, radius, mask); 
         isGrounded = ground;
@@ -130,7 +133,7 @@ public class Player : MonoBehaviour
 
     void IncrementJumpBufferCounter()
     {
-        if (Input.GetButtonDown("Jump")) 
+        if (Input.GetButtonDown($"P{playerNumber}Jump")) 
             jumpBufferCounter = jumpBufferTime;  
         else 
             jumpBufferCounter -= Time.deltaTime;   
