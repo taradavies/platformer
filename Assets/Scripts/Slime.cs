@@ -8,6 +8,7 @@ public class Slime : MonoBehaviour
     [SerializeField] Transform backSensor;
     [SerializeField] LayerMask mask;
     [SerializeField] float distanceFromGround;
+    [SerializeField] Sprite deathSprite;
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
     float direction;
@@ -22,7 +23,7 @@ public class Slime : MonoBehaviour
     void Update()
     {
         rb.velocity = new Vector2(direction, rb.velocity.y);
-        
+
         if (direction < 0)
         {
             ScanSensor(frontSensor);
@@ -52,7 +53,34 @@ public class Slime : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.TryGetComponent<Player>(out var player)) {
-            player.ResetToStart();
+
+            Vector2 normal = collision.GetContact(0).normal;
+
+            if (normal.y < -0.5) {
+                StartCoroutine(Die());
+            }
+            else {
+                player.ResetToStart();
+            }
         }
     }
+
+    IEnumerator Die() {
+        spriteRenderer.sprite = deathSprite;
+        GetComponent<Animator>().enabled = false;    
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
+        rb.simulated = false;
+
+        float alpha = 1;
+        while (alpha > 0) {
+            // wait until the next frame
+            yield return null;
+            alpha -= Time.deltaTime;
+            spriteRenderer.color = new Color(1, 1, 1, alpha);
+        }
+
+        gameObject.SetActive(false);
+    }
 }
+
