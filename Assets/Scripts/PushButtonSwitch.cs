@@ -23,7 +23,6 @@ public class PushButtonSwitch : MonoBehaviour
 
     private void BecomePressed()
     {
-        Debug.Log("Pressed");
         spriteRenderer.sprite = pressedSprite;
         onPressed?.Invoke();
     }
