@@ -14,7 +14,7 @@ public class PushButtonSwitch : MonoBehaviour
 
     void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        BecomeReleased();
+        releasedSprite = spriteRenderer.sprite;
     }
     void OnTriggerEnter2D(Collider2D collider) {
         if (collider.TryGetComponent<Player>(out var player))
