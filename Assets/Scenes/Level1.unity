@@ -600,7 +600,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &411029899
 Transform:
   m_ObjectHideFlags: 0
@@ -1366,11 +1366,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f286958db6f9d14479b9296175ee6cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  downSprite: {fileID: 21300000, guid: 091563cd02911564586c1074ffb1ab7b, type: 3}
-  onEnter:
+  pressedSprite: {fileID: 21300000, guid: 091563cd02911564586c1074ffb1ab7b, type: 3}
+  onPressed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1216460168}
+      - m_Target: {fileID: 411029898}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -1381,6 +1381,21 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+  onReleased:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 411029898}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!61 &928936841
 BoxCollider2D:
@@ -1447,7 +1462,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4d9af62ae995a4c4baa0ac08ad6cbc1f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1705,7 +1720,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1216460169
 Transform:
   m_ObjectHideFlags: 0

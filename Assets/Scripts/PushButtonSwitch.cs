@@ -5,27 +5,37 @@ using UnityEngine.Events;
 
 public class PushButtonSwitch : MonoBehaviour
 {
-    [SerializeField] Sprite downSprite;
-    [SerializeField] UnityEvent onEnter;
+    [SerializeField] Sprite pressedSprite;
+    [SerializeField] UnityEvent onPressed;
+    [SerializeField] UnityEvent onReleased;
 
     SpriteRenderer spriteRenderer;
-    Sprite initialSprite;
+    Sprite releasedSprite;
 
     void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        initialSprite = spriteRenderer.sprite;
+        BecomeReleased();
     }
     void OnTriggerEnter2D(Collider2D collider) {
-        if (collider.TryGetComponent<Player>(out var player)) {
-            spriteRenderer.sprite = downSprite;
+        if (collider.TryGetComponent<Player>(out var player))
+            BecomePressed();
+    }
 
-            onEnter?.Invoke();
-        }
+    private void BecomePressed()
+    {
+        spriteRenderer.sprite = pressedSprite;
+        onPressed?.Invoke();
     }
 
     void OnTriggerExit2D(Collider2D collider) {
-        if (collider.TryGetComponent<Player>(out var player)) {
-            spriteRenderer.sprite = initialSprite;
+        if (collider.TryGetComponent<Player>(out var player))
+        {
+            BecomeReleased();
         }
+    }
+    private void BecomeReleased()
+    {
+        spriteRenderer.sprite = releasedSprite;
+        onReleased?.Invoke();
     }
 }
