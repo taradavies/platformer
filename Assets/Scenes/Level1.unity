@@ -443,7 +443,6 @@ GameObject:
   m_Component:
   - component: {fileID: 297872776}
   - component: {fileID: 297872775}
-  - component: {fileID: 297872777}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -516,20 +515,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &297872777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 297872774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc9f864084354c841bd5aaca29a727c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounceVelocity: 12.5
-  downSprite: {fileID: 0}
 --- !u!1 &367450037
 GameObject:
   m_ObjectHideFlags: 0
@@ -1551,6 +1536,7 @@ MonoBehaviour:
   onReleased:
     m_PersistentCalls:
       m_Calls: []
+  playerNumber: 1
 --- !u!61 &928936841
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2512,7 +2498,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!70 &1331251416
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

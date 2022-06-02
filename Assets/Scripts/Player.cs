@@ -4,14 +4,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Player Number")]
-    [SerializeField] [Range(1,2)] int playerNumber =1;
+    [SerializeField] [Range(1,2)] int playerNumber = 1;
+    public int PlayerNumber => playerNumber;
 
     [Header("Ground Check")]
     [SerializeField] Transform groundCheck;
     [SerializeField] float radius = 0.2f;
     [SerializeField] LayerMask mask;
-
-    // coyote and jump buffer
 
     [Header("Coyote Time & Jump Buffer")]
     [SerializeField] float coyoteTime = 0.2f;
