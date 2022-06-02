@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Breakable : MonoBehaviour
 {
+    [SerializeField] ParticleSystem breakFX;
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.TryGetComponent<Player>(out var player)) {
             Vector2 normal = collision.GetContact(0).normal;
@@ -17,6 +18,9 @@ public class Breakable : MonoBehaviour
 
     void TakeHit()
     {
-        gameObject.SetActive(false);
+        breakFX.Play();
+        
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 }
