@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Vector2 startingPos;
     bool isGrounded;
+    bool isWalking;
     bool platformIsSlippery;
     float horizontalInput;
 
@@ -70,11 +71,11 @@ public class Player : MonoBehaviour
             spriteRenderer.flipX = horizontalInput < 0;
 
         // animate movement
-        bool isWalking = horizontalInput != 0;
-        Animate(isWalking);
+        isWalking = horizontalInput != 0;
+        UpdateAnimator();
 
         // checks for jumps
-        if (coyoteTimeCounter > 0 && jumpBufferCounter > 0)
+        if (ShouldContinueJump())
         {
             ExecuteJump();
             jumpBufferCounter = 0;
@@ -128,7 +129,15 @@ public class Player : MonoBehaviour
         isGrounded = ground;
         platformIsSlippery = ground?.CompareTag("Slippery") ?? false;
     }
-    void Animate(bool isWalking) => controller.SetBool("isWalking", isWalking);
+    void UpdateAnimator() {
+        controller.SetBool("isWalking", isWalking); 
+        controller.SetBool("Jump", ShouldContinueJump());
+    }
+
+    bool ShouldContinueJump()
+    {
+        return coyoteTimeCounter > 0 && jumpBufferCounter > 0;
+    }
 
     void IncrementJumpBufferCounter()
     {
