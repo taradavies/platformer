@@ -155,15 +155,20 @@ public class Player : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime; 
     }
 
-    public void ResetToStart()
-    {
-        transform.position = startingPos;
-        rb.velocity = Vector2.zero;
-    }
-
     void ExecuteJump()
     {
         jumpsRemaining--;
         rb.AddForce(Vector2.up * jumpForce); 
     }
+
+    public void ResetToStart()
+    {
+        rb.position = startingPos;
+        rb.velocity = Vector2.zero;
+    }
+    public void TeleportTo(Vector3 position) {
+        rb.position = position;
+        rb.velocity = Vector2.zero;
+    }
+
 }
