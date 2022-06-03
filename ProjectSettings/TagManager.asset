@@ -42,9 +42,15 @@ TagManager:
   - name: Background
     uniqueID: 2409906479
     locked: 0
+  - name: Background Props
+    uniqueID: 1409942215
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Particles
     uniqueID: 3393873891
+    locked: 0
+  - name: Foreground Props
+    uniqueID: 1449759091
     locked: 0
