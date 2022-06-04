@@ -6,6 +6,8 @@ using UnityEngine;
 public class FallingPlatform : MonoBehaviour
 {
     public bool isPlayerOnPlatform;
+    [Tooltip("Sets the amount of time the platform wiggles for")]
+    [SerializeField] [Range(0.01f, 3)] float fallAfterSeconds = 1f;
 
     [Header("X Offset")]
     [SerializeField] float minWiggleXOffset;
@@ -20,7 +22,7 @@ public class FallingPlatform : MonoBehaviour
 
     HashSet<Player> playersOnPlatform = new HashSet<Player>();
     Vector3 initialPosition;
-
+    float wiggleTimer = 0f;
     bool isFalling = false;
 
     void Start() {
@@ -42,9 +44,8 @@ public class FallingPlatform : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
 
         Debug.Log("Wiggling");
-        float wiggleTimer = 0f;
-
-        while (wiggleTimer < 1f) {
+  
+        while (wiggleTimer < fallAfterSeconds) {
             Wiggle();
             float randomDelay = UnityEngine.Random.Range(0.05f, 0.01f);
             yield return new WaitForSeconds(randomDelay);
@@ -72,7 +73,14 @@ public class FallingPlatform : MonoBehaviour
     {
         transform.position += Vector3.down * Time.deltaTime * fallSpeed;
     }
-
+    private void Wiggle()
+    {
+        float randomXPos = UnityEngine.Random.Range(minWiggleXOffset, maxWiggleXOffset);
+        float randomYPos =  UnityEngine.Random.Range(minWiggleYOffset, maxWiggleYOffset);
+        Vector3 offSet = new Vector3(randomXPos, randomYPos);
+        transform.position = initialPosition + offSet;
+        
+    }
     void OnTriggerExit2D(Collider2D collider) {
         if (isFalling) {return;}
 
@@ -85,14 +93,5 @@ public class FallingPlatform : MonoBehaviour
                 StopCoroutine(WiggleAndFall());
             }
         }
-    }
-
-    private void Wiggle()
-    {
-        float randomXPos = UnityEngine.Random.Range(minWiggleXOffset, maxWiggleXOffset);
-        float randomYPos =  UnityEngine.Random.Range(minWiggleYOffset, maxWiggleYOffset);
-        Vector3 offSet = new Vector3(randomXPos, randomYPos);
-        transform.position = initialPosition + offSet;
-        
     }
 }
