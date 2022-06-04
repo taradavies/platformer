@@ -347,8 +347,9 @@ GameObject:
   - component: {fileID: 60837791}
   - component: {fileID: 60837790}
   - component: {fileID: 60837789}
-  m_Layer: 0
-  m_Name: dirtHalfMid
+  - component: {fileID: 60837794}
+  m_Layer: 7
+  m_Name: Crumbling Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -493,6 +494,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &60837794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60837788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b4bf7704eb93c4da3f93081d52c88f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayerOnPlatform: 0
 --- !u!1 &64215499
 GameObject:
   m_ObjectHideFlags: 0
@@ -2198,7 +2212,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 14.37811
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2221,7 +2235,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: 0.0017999341, y: -0.0015890539, z: 0.0000028602008, w: 0.99999714}
+  m_LocalRotation: {x: 0.0019903653, y: -0.043872762, z: 0.000087407134, w: 0.9990352}
   m_LocalPosition: {x: -1.9736823, y: -5.31, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -20693,7 +20707,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1610457887}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.21, y: -7.76, z: 27.567013}
+  m_LocalPosition: {x: 15.5, y: -9.732005, z: 27.567013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 324755953}
@@ -26273,7 +26287,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947173263}
-  m_LocalRotation: {x: 0.0017999341, y: -0.0015890539, z: 0.0000028602008, w: 0.99999714}
+  m_LocalRotation: {x: 0.0019903653, y: -0.043872762, z: 0.000087407134, w: 0.9990352}
   m_LocalPosition: {x: -1.9736823, y: -5.31, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
