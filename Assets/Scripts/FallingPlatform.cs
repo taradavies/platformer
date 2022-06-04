@@ -1,12 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FallingPlatform : MonoBehaviour
 {
-    HashSet<Player> playersOnPlatform = new HashSet<Player>();
     public bool isPlayerOnPlatform;
-    Vector3 initialPosition;
 
     [Header("X Offset")]
     [SerializeField] float minWiggleXOffset;
@@ -15,6 +14,14 @@ public class FallingPlatform : MonoBehaviour
     [Header("Y Offset")]
     [SerializeField] float minWiggleYOffset;
     [SerializeField] float maxWiggleYOffset;
+
+    [Header("Speed")]
+    [SerializeField] float fallSpeed = 2f;
+
+    HashSet<Player> playersOnPlatform = new HashSet<Player>();
+    Vector3 initialPosition;
+
+    bool isFalling = false;
 
     void Start() {
         initialPosition = transform.position;
@@ -43,12 +50,32 @@ public class FallingPlatform : MonoBehaviour
             yield return new WaitForSeconds(randomDelay);
             wiggleTimer += randomDelay;
         }
-
         Debug.Log("Falling");
-        yield return new WaitForSeconds(3f);
+        isFalling = true;
+
+        foreach (var collider in  GetComponents<Collider2D>()) {
+            collider.enabled = false;
+        }
+
+        float fallTimer = 0f;
+
+        while (fallTimer < 3f) {
+            Fall();
+            fallTimer += Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(gameObject);
+    }
+
+    private void Fall()
+    {
+        transform.position += Vector3.down * Time.deltaTime * fallSpeed;
     }
 
     void OnTriggerExit2D(Collider2D collider) {
+        if (isFalling) {return;}
+
         if (collider.TryGetComponent<Player>(out var player)) {
 
             playersOnPlatform.Remove(player);
