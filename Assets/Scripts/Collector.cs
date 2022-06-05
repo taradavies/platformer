@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Collector : MonoBehaviour
 {
-    [SerializeField] Collectible[] collectibles;
+    [SerializeField] List<Collectible> collectibles;
     TMP_Text remainingCollectibleText;
 
     void Start() {
@@ -16,17 +16,21 @@ public class Collector : MonoBehaviour
 
     void Update() {
         int countRemaining = 0;
-        
+
         foreach(var collectible in collectibles) {
             if (collectible.isActiveAndEnabled) {
                 countRemaining++;
             }
         }
-        
-        // if its not null --> '?'
+
         remainingCollectibleText?.SetText(countRemaining.ToString());
 
         if (countRemaining > 0) {return;}
+    }
+
+    // called when a value is changed within the inspector
+    void OnValidate() {
+        collectibles = collectibles.Distinct().ToList();
     }
 
 
