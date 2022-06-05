@@ -1,21 +1,16 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 [RequireComponent(typeof(Collider2D))]
 public class Collectible : MonoBehaviour
 {
-    List<Collector> collectors = new List<Collector>();
+    public event Action OnPickedUp;
     void OnTriggerEnter2D(Collider2D collider) {
         if (collider.TryGetComponent<Player>(out var player)) {
             gameObject.SetActive(false);
 
-            foreach (var collector in collectors) {
-                collector.PickUpCollectible();
-            }
+            OnPickedUp?.Invoke();
         }
-    }
-
-    public void SetCollector(Collector collector) {
-        collectors.Add(collector);
     }
 }
