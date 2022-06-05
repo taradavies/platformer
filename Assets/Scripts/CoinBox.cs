@@ -5,6 +5,7 @@ using UnityEngine;
 public class CoinBox : MonoBehaviour
 {
     [SerializeField] int totalCoins = 3;
+    [SerializeField] Sprite usedCoinBox;
     int remainingCoins;
 
     void Start() {
@@ -17,7 +18,10 @@ public class CoinBox : MonoBehaviour
             // If we hit the object from above increment the coins collected
             if (normal.y < 0 && remainingCoins > 0) {
                 Coin.coinsCollected++;
-                remainingCoins--;  
+                remainingCoins--;
+                if (remainingCoins <= 0) {
+                    GetComponent<SpriteRenderer>().sprite = usedCoinBox;
+                }  
             }
 
         }
