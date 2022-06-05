@@ -1772,7 +1772,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 50, y: 40}
+  m_Size: {x: 55.190212, y: 40}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1786,7 +1786,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 297872774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24, y: -0.32, z: 0}
+  m_LocalPosition: {x: -2.3551, y: -0.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2892,8 +2892,8 @@ GameObject:
   - component: {fileID: 542500431}
   - component: {fileID: 542500430}
   - component: {fileID: 542500429}
-  - component: {fileID: 542500428}
   - component: {fileID: 542500427}
+  - component: {fileID: 542500428}
   m_Layer: 0
   m_Name: Red Gem Door
   m_TagString: Untagged
@@ -2917,6 +2917,21 @@ MonoBehaviour:
   - {fileID: 1420318249}
   - {fileID: 416464015}
   - {fileID: 928295503}
+  onCollectionComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 542500428}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &542500428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2935,7 +2950,7 @@ MonoBehaviour:
   doorMidRenderer: {fileID: 542500430}
   requiredCoins: 0
   exitDoor: {fileID: 0}
-  canvas: {fileID: 0}
+  canvas: {fileID: 1145218247}
 --- !u!61 &542500429
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9629,7 +9644,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 4, y: 18}
+  m_Size: {x: 4, y: 16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -9643,7 +9658,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934563418}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.08671379, y: -17.647032, z: 3.2692523}
+  m_LocalPosition: {x: -1.0995, y: -17.647032, z: 3.2692523}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 459779856}
@@ -9667,7 +9682,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 4, y: 18}
+    newSize: {x: 4, y: 16}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
