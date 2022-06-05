@@ -36,6 +36,17 @@ public class Collector : MonoBehaviour
     void OnValidate() {
         collectibles = collectibles.Distinct().ToList();
     }
-
-
+    void OnDrawGizmos() {
+        foreach (var collectible in collectibles) {        
+            
+            if (UnityEditor.Selection.activeGameObject == gameObject) {
+                Gizmos.color = Color.yellow;
+            }
+            else {
+                Gizmos.color = Color.gray;  
+            }
+            
+            Gizmos.DrawLine(transform.position, collectible.transform.position);
+        }
+    }
 }
