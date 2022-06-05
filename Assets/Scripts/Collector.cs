@@ -10,10 +10,13 @@ public class Collector : MonoBehaviour
 
     void Update() {
         // if any items are still active
-        if (collectibles.Any(t => t.gameObject.activeSelf))
-            return;
-        
-        //Debug.Log("All gems are gone!");
+        foreach(var collectible in collectibles) {
+            if (collectible.isActiveAndEnabled) {
+                return;
+            }
+        }
+        // if (collectibles.Any(t => t.gameObject.activeSelf))
+        //     return;
     }
 
 

@@ -36,6 +36,8 @@ public class Player : MonoBehaviour
     bool isWalking;
     bool platformIsSlippery;
     float horizontalInput;
+    string horizontalInputAxes;
+    string jumpInputAxes;
 
     void Awake()
     {
@@ -46,6 +48,8 @@ public class Player : MonoBehaviour
     void Start() {
         startingPos = transform.position;
         jumpsRemaining = extraJumps;
+        horizontalInputAxes = $"P{playerNumber}Horizontal";
+        jumpInputAxes = $"P{playerNumber}Jump";
     }
     void Update()
     {
@@ -56,7 +60,7 @@ public class Player : MonoBehaviour
         ResetCurrentJumps();
 
         // read player input and move 
-        horizontalInput = Input.GetAxis($"P{playerNumber}Horizontal");
+        horizontalInput = Input.GetAxis(horizontalInputAxes);
         if (platformIsSlippery) 
             Slip();
         else 
@@ -122,8 +126,8 @@ public class Player : MonoBehaviour
         coyoteTimeCounter = 0;
     }
 
-    bool ShouldDoubleJump() => Input.GetButtonDown($"P{playerNumber}Jump") && jumpsRemaining > 0;
-    bool ShouldVariableJump() => Input.GetButtonUp($"P{playerNumber}Jump") && rb.velocity.y > 0f;
+    bool ShouldDoubleJump() => Input.GetButtonDown(jumpInputAxes) && jumpsRemaining > 0;
+    bool ShouldVariableJump() => Input.GetButtonUp(jumpInputAxes) && rb.velocity.y > 0f;
     void IsGrounded() {
         var ground = Physics2D.OverlapCircle(groundCheck.position, radius, mask); 
         isGrounded = ground;
@@ -141,7 +145,7 @@ public class Player : MonoBehaviour
 
     void IncrementJumpBufferCounter()
     {
-        if (Input.GetButtonDown($"P{playerNumber}Jump")) 
+        if (Input.GetButtonDown(jumpInputAxes)) 
             jumpBufferCounter = jumpBufferTime;  
         else 
             jumpBufferCounter -= Time.deltaTime;   
@@ -170,5 +174,4 @@ public class Player : MonoBehaviour
         rb.position = position;
         rb.velocity = Vector2.zero;
     }
-
 }
