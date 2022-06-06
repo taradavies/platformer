@@ -8,27 +8,18 @@ public class ItemBox : HittableFromAbove
     [SerializeField] float itemLaunchVelocity;
     bool usedItem = false;
 
+    protected override bool canUse => !usedItem && itemSpawned != null;
+
     void Start() {
         itemSpawned.SetActive(false);
     }
-
-    void OnCollisionEnter2D(Collision2D collision) 
+    protected override void UseBox()
     {
-        if (collision.gameObject.TryGetComponent<Player>(out var player)) 
-        {  
-            Vector2 normal = collision.GetContact(0).normal;
-            // If we hit the object from above increment the coins collected
-            if (normal.y < 0) 
-            {  
-                usedItem = true; 
-                GetComponent<SpriteRenderer>().sprite = usedSprite;
-                itemSpawned.SetActive(true);
-                var itemRb = itemSpawned.GetComponent<Rigidbody2D>();
-                if (itemRb != null && !usedItem) {
-                    Launch(itemRb);
-                    usedItem = false;
-                }
-            }
+        usedItem = true;
+        itemSpawned.SetActive(true);
+        var itemRb = itemSpawned.GetComponent<Rigidbody2D>();
+        if (itemRb != null && !usedItem) {
+            Launch(itemRb);
         }
     }
     void Launch(Rigidbody2D itemRb) {

@@ -3057,7 +3057,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: -0.021792395, y: -0.03807656, z: -0.0008305795, w: 0.99903685}
+  m_LocalRotation: {x: -0.021792404, y: -0.038076557, z: -0.0008305797, w: 0.99903685}
   m_LocalPosition: {x: -9.370032, y: -2.9139652, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -4679,8 +4679,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be31615a2c1f02e4e88d0a2383f8516a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usedSprite: {fileID: 21300000, guid: 84cb8e6e1c5f05a489e8e680e774ee1a, type: 3}
   totalCoins: 3
-  usedCoinBox: {fileID: 21300000, guid: 84cb8e6e1c5f05a489e8e680e774ee1a, type: 3}
 --- !u!61 &816729047
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17629,7 +17629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cfb545e5a9fe54cb1cd334b4f2f2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usedItemBox: {fileID: 21300000, guid: 2002b0ec35f394a4b8172f5c1d18f291, type: 3}
+  usedSprite: {fileID: 21300000, guid: 2002b0ec35f394a4b8172f5c1d18f291, type: 3}
   itemSpawned: {fileID: 794004447}
   itemLaunchVelocity: 6
 --- !u!61 &1408705657
@@ -34055,7 +34055,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947173263}
-  m_LocalRotation: {x: -0.021792395, y: -0.03807656, z: -0.0008305795, w: 0.99903685}
+  m_LocalRotation: {x: -0.021792404, y: -0.038076557, z: -0.0008305797, w: 0.99903685}
   m_LocalPosition: {x: -9.370032, y: -2.9139652, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
