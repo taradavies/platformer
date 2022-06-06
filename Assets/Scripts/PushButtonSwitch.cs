@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,14 +35,20 @@ public class PushButtonSwitch : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collider) {
         Player player = collider.GetComponent<Player>();
-        if (player == null || player.PlayerNumber != playerNumber) {
+        if (player == null || player.PlayerNumber != playerNumber || OnReleaseIsEmpty()) {
             return;
         }
         BecomeReleased();
     }
+
+    bool OnReleaseIsEmpty()
+    {
+        return onReleased.GetPersistentEventCount() == 0;
+    }
+
     private void BecomeReleased()
     {
-        spriteRenderer.sprite = releasedSprite;
-        onReleased?.Invoke();
+            spriteRenderer.sprite = releasedSprite;
+            onReleased.Invoke();
     }
 }
