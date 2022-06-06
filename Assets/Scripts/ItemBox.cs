@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemBox : MonoBehaviour
+public class ItemBox : HittableFromAbove
 {
-    [SerializeField] Sprite usedItemBox;
     [SerializeField] GameObject itemSpawned;
     [SerializeField] float itemLaunchVelocity;
     bool usedItem = false;
@@ -22,7 +21,7 @@ public class ItemBox : MonoBehaviour
             if (normal.y < 0) 
             {  
                 usedItem = true; 
-                GetComponent<SpriteRenderer>().sprite = usedItemBox;
+                GetComponent<SpriteRenderer>().sprite = usedSprite;
                 itemSpawned.SetActive(true);
                 var itemRb = itemSpawned.GetComponent<Rigidbody2D>();
                 if (itemRb != null && !usedItem) {
