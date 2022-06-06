@@ -26,4 +26,9 @@ public class ItemBox : HittableFromAbove
         itemRb.velocity = new Vector2(itemRb.velocity.x, itemLaunchVelocity);
     }
 
+    protected override void TurnOffSprite()
+    {
+        base.TurnOffSprite();
+    }
+
 }

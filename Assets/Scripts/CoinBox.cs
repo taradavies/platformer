@@ -5,6 +5,7 @@ using UnityEngine;
 public class CoinBox : HittableFromAbove
 {
     [SerializeField] int totalCoins = 3;
+    [SerializeField] GameObject coinSprite;
     int remainingCoins;
 
     protected override bool canUse => remainingCoins > 0;
@@ -16,5 +17,11 @@ public class CoinBox : HittableFromAbove
     protected override void UseBox() {
         Coin.coinsCollected++;
         remainingCoins --;
+    }
+
+    protected override void TurnOffSprite()
+    {
+        base.TurnOffSprite();
+        coinSprite.SetActive(false);
     }
 }
