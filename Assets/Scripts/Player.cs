@@ -27,15 +27,14 @@ public class Player : MonoBehaviour
     [SerializeField] float jumpForce = 200f;
     [SerializeField] int extraJumps;
     int jumpsRemaining;
-
     Rigidbody2D rb;
     Animator controller;
     SpriteRenderer spriteRenderer;
     Vector2 startingPos;
+    float horizontalInput;
     bool isGrounded;
     bool isWalking;
     bool platformIsSlippery;
-    float horizontalInput;
     string horizontalInputAxes;
     string jumpInputAxes;
 
