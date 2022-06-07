@@ -40,18 +40,17 @@ public class FallingPlatform : MonoBehaviour
 
     IEnumerator WiggleAndFall()
     {
-        Debug.Log("Waiting to wiggle.");
+        // waiting to wiggle
         yield return new WaitForSeconds(0.25f);
 
-        Debug.Log("Wiggling");
-  
+        // wiggling
         while (wiggleTimer < fallAfterSeconds) {
             Wiggle();
             float randomDelay = UnityEngine.Random.Range(0.05f, 0.01f);
             yield return new WaitForSeconds(randomDelay);
             wiggleTimer += randomDelay;
         }
-        Debug.Log("Falling");
+        // falling
         isFalling = true;
 
         foreach (var collider in  GetComponents<Collider2D>()) {
