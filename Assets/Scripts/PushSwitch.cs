@@ -26,7 +26,6 @@ public class PushSwitch : MonoBehaviour
     SwitchPosition currentPosition;
 
     void Awake() {
-        spriteRenderer = GetComponent<SpriteRenderer>();
         SetTogglePosition(startingPosition, true);
     }
 
@@ -71,18 +70,18 @@ public class PushSwitch : MonoBehaviour
 
     }
     void OnValidate() {
-        SpriteRenderer tempRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         switch (startingPosition) {
             case SwitchPosition.RIGHT:
-                tempRenderer.sprite = rightSwitch;
+                spriteRenderer.sprite = rightSwitch;
                 onRightToggle.Invoke();  
                 break;
             case SwitchPosition.LEFT:
-                tempRenderer.sprite = leftSwitch;
+                spriteRenderer.sprite = leftSwitch;
                 onLeftToggle.Invoke();
                 break;
             case SwitchPosition.CENTER:
-                tempRenderer.sprite = centerSwitch;
+                spriteRenderer.sprite = centerSwitch;
                 onCenterToggle.Invoke();
                 break;
         }

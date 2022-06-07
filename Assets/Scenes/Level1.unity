@@ -3118,7 +3118,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.637097
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3141,7 +3141,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: -0.0058952095, y: 0.043748703, z: 0.00025815945, w: 0.99902517}
+  m_LocalRotation: {x: -1e-45, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.5925102, y: -5.008477, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -17113,8 +17113,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ec1363b390cf3428dd03ec8bfa9b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingPosition: 2
   leftSwitch: {fileID: 21300000, guid: 4f3926184aa425944a137230da0750a4, type: 3}
   rightSwitch: {fileID: 21300000, guid: 6a06307c7dd4a104e9128a7838ec01b4, type: 3}
+  centerSwitch: {fileID: 21300000, guid: 7d6e3398b9509de44acbf25f3219ce8f, type: 3}
   onRightToggle:
     m_PersistentCalls:
       m_Calls:
@@ -17156,6 +17158,33 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2019201215}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onCenterToggle:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1925141387}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2019201215}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -17503,7 +17532,6 @@ MonoBehaviour:
   slipFactor: 1.2
   jumpForce: 320
   extraJumps: 1
-  horizontalInput: 0
 --- !u!50 &1331251419
 Rigidbody2D:
   serializedVersion: 4
@@ -18730,7 +18758,6 @@ MonoBehaviour:
   slipFactor: 1.2
   jumpForce: 320
   extraJumps: 1
-  horizontalInput: 0
 --- !u!95 &1485512248
 Animator:
   serializedVersion: 3
@@ -34763,7 +34790,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947173263}
-  m_LocalRotation: {x: -0.0058952095, y: 0.043748703, z: 0.00025815945, w: 0.99902517}
+  m_LocalRotation: {x: -1e-45, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.5925102, y: -5.008477, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
