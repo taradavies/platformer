@@ -7,8 +7,7 @@ public class KeyLock : MonoBehaviour
 {
     [SerializeField] UnityEvent onUnlocked;
     public void Unlock() {
-        Debug.Log("Unlocked");
-
+        GetComponent<AudioSource>().Play();
         onUnlocked?.Invoke();
     }
 }
