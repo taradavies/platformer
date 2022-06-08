@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
@@ -15,7 +12,11 @@ public class Coin : MonoBehaviour
             ScoreSystem.AddScore(100);
             GetComponent<Collider2D>().enabled = false;
             GetComponent<SpriteRenderer>().enabled = false;
-            GetComponent<AudioSource>().PlayOneShot(GenerateRandomClip());
+            if (coinAudios.Length > 0)
+                GetComponent<AudioSource>().PlayOneShot(GenerateRandomClip());
+            else {
+                GetComponent<AudioSource>().Play();
+            }
         }
     }
     private AudioClip GenerateRandomClip()
