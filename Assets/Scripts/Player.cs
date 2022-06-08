@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     Animator controller;
     SpriteRenderer spriteRenderer;
+    AudioSource audioSource;
     Vector2 startingPos;
     float horizontalInput;
     bool isGrounded;
@@ -43,6 +44,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         controller = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
     void Start() {
         startingPos = transform.position;
@@ -161,6 +163,9 @@ public class Player : MonoBehaviour
     void ExecuteJump()
     {
         jumpsRemaining--;
+        if (audioSource != null) {
+            audioSource.Play();
+        }
         rb.AddForce(Vector2.up * jumpForce); 
     }
 
