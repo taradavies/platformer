@@ -7,10 +7,12 @@ public class HittableFromAbove : MonoBehaviour
 {
     [SerializeField] protected Sprite usedSprite;
     Animator controller;
+    AudioSource audioSource;
     protected virtual bool canUse => true;
 
     void Awake() {
         controller = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
@@ -19,7 +21,8 @@ public class HittableFromAbove : MonoBehaviour
         
         if (collision.gameObject.TryGetComponent<Player>(out var player)) {
             Vector2 collisionNormal = collision.GetContact(0).normal; 
-            if (collisionNormal.y < 0 && canUse) {
+            if (collisionNormal.y > 0 && canUse) {
+                PlayAudio();
                 PlayAnimation();
                 UseBox();
                 if (!canUse) {
@@ -27,6 +30,12 @@ public class HittableFromAbove : MonoBehaviour
                 }
             }
         } 
+    }
+
+     void PlayAudio()
+    {
+        if (audioSource != null) 
+            audioSource.Play();
     }
 
     protected virtual void TurnOffSprite()
@@ -42,6 +51,6 @@ public class HittableFromAbove : MonoBehaviour
 
     // virtual allows the method to be overriden
     protected virtual void UseBox() {
-        //Debug.Log($"Used {gameObject.name}");
+        
     }
 }
