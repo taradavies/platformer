@@ -10,7 +10,7 @@ public class ScoreSystem : MonoBehaviour
     static int score;
     static int highScore;
 
-    void Start() {
+    void Awake() {
         highScore = PlayerPrefs.GetInt("highscore");
     }
     public static void AddScore(int points) {

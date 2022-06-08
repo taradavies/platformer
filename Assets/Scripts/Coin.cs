@@ -8,10 +8,11 @@ public class Coin : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider) {
         if (collider.TryGetComponent<Player>(out var player)) {
-            gameObject.SetActive(false);
             coinsCollected++;
-            
             ScoreSystem.AddScore(100);
+            GetComponent<Collider2D>().enabled = false;
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<AudioSource>().Play();
         }
     }
 }
