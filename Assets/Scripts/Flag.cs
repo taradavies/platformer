@@ -18,9 +18,11 @@ public class Flag : MonoBehaviour
    } 
 
     IEnumerator LoadNextLevel() {
+        // unlock the level
+        PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "unlocked", 1);
         yield return new WaitForSeconds(waitTime);
        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-       if (sceneIndex >= SceneManager.sceneCount) {
+       if (sceneIndex >= SceneManager.sceneCountInBuildSettings) {
            SceneManager.LoadScene(0);
        }
        else {
