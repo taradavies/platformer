@@ -1282,7 +1282,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &324755952
 GameObject:
@@ -24906,7 +24906,7 @@ Transform:
   - {fileID: 599704272}
   - {fileID: 671461263}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1772790210 stripped
 GameObject:
@@ -25944,7 +25944,7 @@ Transform:
   - {fileID: 1319772145}
   - {fileID: 466559844}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2090433031
 GameObject:
@@ -26392,7 +26392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1539556943708087244, guid: 74185bdf3e6dee94c90ad677901ba932, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1539556943708087244, guid: 74185bdf3e6dee94c90ad677901ba932, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26443,6 +26443,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 469737477912454583, guid: 0475301104d95f9428c9294ca36ffc50, type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 469737477912454583, guid: 0475301104d95f9428c9294ca36ffc50, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 469737477912454583, guid: 0475301104d95f9428c9294ca36ffc50, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 469737477912454583, guid: 0475301104d95f9428c9294ca36ffc50, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 487.838
+      objectReference: {fileID: 0}
+    - target: {fileID: 469737477912454583, guid: 0475301104d95f9428c9294ca36ffc50, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 95.176
+      objectReference: {fileID: 0}
+    - target: {fileID: 469737477912454583, guid: 0475301104d95f9428c9294ca36ffc50, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 469737477912454583, guid: 0475301104d95f9428c9294ca36ffc50, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -34.22458
+      objectReference: {fileID: 0}
     - target: {fileID: 2433975756235813686, guid: 0475301104d95f9428c9294ca36ffc50, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -26453,7 +26481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2433975756235813686, guid: 0475301104d95f9428c9294ca36ffc50, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2433975756235813686, guid: 0475301104d95f9428c9294ca36ffc50, type: 3}
       propertyPath: m_AnchorMax.x
@@ -26529,7 +26557,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2433975756235813690, guid: 0475301104d95f9428c9294ca36ffc50, type: 3}
       propertyPath: m_Name
-      value: Coins Collected Canvas
+      value: '[INGAME CANVAS]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766092736743838753, guid: 0475301104d95f9428c9294ca36ffc50, type: 3}
+      propertyPath: m_fontSize
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766092736743838753, guid: 0475301104d95f9428c9294ca36ffc50, type: 3}
+      propertyPath: m_margin.w
+      value: 2.012169
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766092736743838753, guid: 0475301104d95f9428c9294ca36ffc50, type: 3}
+      propertyPath: m_margin.z
+      value: 1.4708405
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766092736743838753, guid: 0475301104d95f9428c9294ca36ffc50, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0475301104d95f9428c9294ca36ffc50, type: 3}
@@ -26747,7 +26791,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3804997844956455104, guid: bffc40b4847b4b54ca1971cc993dfb9a, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3804997844956455104, guid: bffc40b4847b4b54ca1971cc993dfb9a, type: 3}
       propertyPath: m_LocalPosition.x
