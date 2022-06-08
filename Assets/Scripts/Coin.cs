@@ -10,7 +10,8 @@ public class Coin : MonoBehaviour
         if (collider.TryGetComponent<Player>(out var player)) {
             gameObject.SetActive(false);
             coinsCollected++;
-            Debug.Log($"Coins Collected {coinsCollected}");
+            
+            ScoreSystem.AddScore(100);
         }
     }
 }
