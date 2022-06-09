@@ -19,6 +19,16 @@ public class Fireball : MonoBehaviour
     }
     
     void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.collider.TryGetComponent<ITakeHit>(out var entity)) {
+            entity.TakeDamage();
+        }
+        Destroy(gameObject);
+    }
+
+    void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.TryGetComponent<ITakeHit>(out var entity)) {
+            entity.TakeDamage();
+        }
         Destroy(gameObject);
     }
 }

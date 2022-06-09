@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slime : MonoBehaviour
+public class Slime : MonoBehaviour, ITakeHit
 {
     [SerializeField] Transform frontSensor;
     [SerializeField] Transform backSensor;
@@ -18,6 +19,11 @@ public class Slime : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         direction = -1;
+    }
+
+    public void TakeDamage()
+    {
+        StartCoroutine(Die());
     }
 
     void Update()
@@ -57,7 +63,7 @@ public class Slime : MonoBehaviour
             Vector2 normal = collision.GetContact(0).normal;
 
             if (normal.y < -0.5) {
-                StartCoroutine(Die());
+                TakeDamage();
             }
             else {
                 player.ResetToStart();
