@@ -5,12 +5,19 @@ using UnityEngine;
 public class FireballLauncher : MonoBehaviour
 {
     [SerializeField] Fireball fireballPrefab;
+    [SerializeField] float fireRate;
+    float fireTimer;
+    int playerNumber;
+    string fireCommand;
     void Start()
     {
-        Instantiate(fireballPrefab, transform.position, Quaternion.identity);
+        playerNumber = GetComponent<Player>().PlayerNumber;
+        fireCommand = $"P{playerNumber}Fire";
     }
     void Update()
     {
-        
+        if (Input.GetButton(fireCommand)) {
+            Instantiate(fireballPrefab, transform.position, Quaternion.identity);
+        }
     }
 }

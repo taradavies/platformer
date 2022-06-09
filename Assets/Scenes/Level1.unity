@@ -8419,6 +8419,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakFX: {fileID: 1608840057}
+--- !u!1 &1073670309 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1539556943708087238, guid: 74185bdf3e6dee94c90ad677901ba932, type: 3}
+  m_PrefabInstance: {fileID: 1539556944869436177}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1073670310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073670309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca14265516479224aa95201913dcf719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireballPrefab: {fileID: 2136460404973139491, guid: 9ac5c257c01022240812cd23120529e7, type: 3}
+  fireRate: 0
 --- !u!4 &1086357236 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6971842780440675869, guid: 77001cb17c769a4418f72a00f8a1cf9b, type: 3}
@@ -19649,6 +19668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireballPrefab: {fileID: 2136460404973139491, guid: 9ac5c257c01022240812cd23120529e7, type: 3}
+  fireRate: 0
 --- !u!1001 &1638990656
 PrefabInstance:
   m_ObjectHideFlags: 0
