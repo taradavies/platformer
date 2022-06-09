@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usedSprite: {fileID: 21300000, guid: 2002b0ec35f394a4b8172f5c1d18f291, type: 3}
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 1769940232078810055, guid: 325cd5fb4eb713f42a351f4ec97f31e3, type: 3}
   itemLaunchVelocity: 6
 --- !u!95 &8274791490884306551
 Animator:
@@ -155,7 +155,7 @@ AudioSource:
   m_GameObject: {fileID: 8274791490884306556}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6361506815754745072, guid: 0d20b61f13c7352459782f4dd96a6e6e, type: 2}
   m_audioClip: {fileID: 8300000, guid: 40f146cce4174ef4e99ba56818a3782a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

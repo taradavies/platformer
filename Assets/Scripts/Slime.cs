@@ -72,6 +72,9 @@ public class Slime : MonoBehaviour
         this.enabled = false;
         rb.simulated = false;
 
+        GetComponent<AudioSource>().Play();
+
+        // fade
         float alpha = 1;
         while (alpha > 0) {
             // wait until the next frame
