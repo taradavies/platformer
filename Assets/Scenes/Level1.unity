@@ -26403,6 +26403,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1539556943708087238, guid: 74185bdf3e6dee94c90ad677901ba932, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1539556943708087244, guid: 74185bdf3e6dee94c90ad677901ba932, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -26678,15 +26682,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3290058504389275766, guid: 6d1ceb6e390cf7b41b7cc0719bcadaa8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.020849023
+      value: 0.020849021
       objectReference: {fileID: 0}
     - target: {fileID: 3290058504389275766, guid: 6d1ceb6e390cf7b41b7cc0719bcadaa8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.040373873
+      value: 0.040373903
       objectReference: {fileID: 0}
     - target: {fileID: 3290058504389275766, guid: 6d1ceb6e390cf7b41b7cc0719bcadaa8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0008426266
+      value: -0.0008426271
       objectReference: {fileID: 0}
     - target: {fileID: 3290058504829274471, guid: 6d1ceb6e390cf7b41b7cc0719bcadaa8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26694,15 +26698,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3290058504829274471, guid: 6d1ceb6e390cf7b41b7cc0719bcadaa8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.020849023
+      value: 0.020849021
       objectReference: {fileID: 0}
     - target: {fileID: 3290058504829274471, guid: 6d1ceb6e390cf7b41b7cc0719bcadaa8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.040373873
+      value: 0.040373903
       objectReference: {fileID: 0}
     - target: {fileID: 3290058504829274471, guid: 6d1ceb6e390cf7b41b7cc0719bcadaa8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0008426266
+      value: -0.0008426271
       objectReference: {fileID: 0}
     - target: {fileID: 3290058504829274520, guid: 6d1ceb6e390cf7b41b7cc0719bcadaa8, type: 3}
       propertyPath: orthographic size
@@ -26818,6 +26822,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3804997844956455107, guid: bffc40b4847b4b54ca1971cc993dfb9a, type: 3}
+      propertyPath: jumpForce
+      value: 320
+      objectReference: {fileID: 0}
+    - target: {fileID: 3804997844956455107, guid: bffc40b4847b4b54ca1971cc993dfb9a, type: 3}
+      propertyPath: jumpBufferTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3804997844956455107, guid: bffc40b4847b4b54ca1971cc993dfb9a, type: 3}
       propertyPath: leftWallSensor
       value: 
       objectReference: {fileID: 3804997843740704501}
@@ -26832,6 +26844,18 @@ PrefabInstance:
     - target: {fileID: 3804997844956455107, guid: bffc40b4847b4b54ca1971cc993dfb9a, type: 3}
       propertyPath: groundMask.m_Bits
       value: 129
+      objectReference: {fileID: 0}
+    - target: {fileID: 3804997844956455107, guid: bffc40b4847b4b54ca1971cc993dfb9a, type: 3}
+      propertyPath: wallJumpVerticalForce
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3804997844956455107, guid: bffc40b4847b4b54ca1971cc993dfb9a, type: 3}
+      propertyPath: wallJumpVerticalVelocity
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3804997844956455107, guid: bffc40b4847b4b54ca1971cc993dfb9a, type: 3}
+      propertyPath: wallJumpHorizontalVelocity
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 3804997844956455110, guid: bffc40b4847b4b54ca1971cc993dfb9a, type: 3}
       propertyPath: m_Name

@@ -19,13 +19,12 @@ public class Player : MonoBehaviour
     [SerializeField] Transform rightWallSensor;
     [SerializeField] Transform leftWallSensor;
     [SerializeField] float wallSlideSpeed = 2f;
+    [SerializeField] float wallJumpVerticalVelocity = 5f;
+    [SerializeField] float wallJumpHorizontalVelocity = 5f;
 
-    [Header("Coyote Time & Jump Buffer")]
+    [Header("Coyote Time")]
     [SerializeField] float coyoteTime = 0.2f;
     float coyoteTimeCounter;
-
-    [SerializeField] float jumpBufferTime = 0.2f;
-    float jumpBufferCounter;
 
     [Header("Movement")]
     [SerializeField] float moveSpeed = 5f;
@@ -43,6 +42,7 @@ public class Player : MonoBehaviour
     Vector2 startingPos;
     float horizontalInput;
     bool isGrounded;
+    bool isOnWall;
     bool isWalking;
     bool platformIsSlippery;
     string horizontalInputAxes;
@@ -75,15 +75,20 @@ public class Player : MonoBehaviour
         if (platformIsSlippery) 
             Slip();
         else if (ShouldSlide()) 
-            Slide();
-        
+        {
+            if (ShouldStartJump()) {
+                WallJump();
+            }
+            else {
+                Slide();   
+            }
+        }
         else 
             MoveHorizontal();
 
         // coyote time and jump buffer
         
         IncrementCoyoteTimer();
-        IncrementJumpBufferCounter();
 
         // flip only if we're pressing down a key
         if (horizontalInput != 0)
@@ -94,10 +99,9 @@ public class Player : MonoBehaviour
         UpdateAnimator();
 
         // checks for jumps
-        if (ShouldContinueJump())
+        if (ShouldStartJump())
         {
             ExecuteJump();
-            jumpBufferCounter = 0;
         }
         else if (ShouldDoubleJump())
         {
@@ -111,6 +115,13 @@ public class Player : MonoBehaviour
 
     }
 
+    void WallJump()
+    {
+        Debug.Log("Wall jump");
+        jumpsRemaining--;
+        rb.velocity = new Vector2(wallJumpHorizontalVelocity * -horizontalInput, wallJumpVerticalVelocity);
+    }
+
     private void Slide()
     {
         rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
@@ -119,22 +130,35 @@ public class Player : MonoBehaviour
 
     private bool ShouldSlide()
     {
-        if (isGrounded) {return false;}
+        if (isGrounded) {
+            return false;
+        }
+
+        // allows for wall jump
+        if (rb.velocity.y > 0) {
+            return false;
+        }
 
         if (horizontalInput > 0) {
             var rightWallSensorHit = Physics2D.OverlapCircle(rightWallSensor.position, distanceFromWall, wallMask);
-            return rightWallSensorHit != null;
+            isOnWall = rightWallSensorHit != null;
+            return isOnWall;
         }
         else if (horizontalInput < 0) {
             var leftWallSensorHit = Physics2D.OverlapCircle(leftWallSensor.position, distanceFromWall, wallMask);
-            return leftWallSensorHit != null;
+            isOnWall = leftWallSensorHit != null;
+            return isOnWall;
         }
         return false;
     }
 
     void MoveHorizontal()
     {
-        rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+        var newHorizontal = Mathf.Lerp(
+            rb.velocity.x,
+            horizontalInput * moveSpeed,
+            Time.deltaTime);
+        rb.velocity = new Vector2(newHorizontal, rb.velocity.y);
     }
 
     void Slip()
@@ -150,7 +174,7 @@ public class Player : MonoBehaviour
 
     void ResetCurrentJumps()
     {
-        if (isGrounded)
+        if (isGrounded || isOnWall)
         {
             jumpsRemaining = extraJumps;
         }
@@ -171,26 +195,18 @@ public class Player : MonoBehaviour
     }
     void UpdateAnimator() {
         controller.SetBool("isWalking", isWalking); 
-        controller.SetBool("Jump", ShouldContinueJump());
+        controller.SetBool("Jump", ShouldStartJump());
         controller.SetBool("Slide", ShouldSlide());
     }
 
-    bool ShouldContinueJump()
+    bool ShouldStartJump()
     {
-        return coyoteTimeCounter > 0 && jumpBufferCounter > 0;
-    }
-
-    void IncrementJumpBufferCounter()
-    {
-        if (Input.GetButtonDown(jumpInputAxes)) 
-            jumpBufferCounter = jumpBufferTime;  
-        else 
-            jumpBufferCounter -= Time.deltaTime;   
+        return coyoteTimeCounter > 0 && Input.GetButtonDown(jumpInputAxes);
     }
 
     void IncrementCoyoteTimer()
     {
-        if (isGrounded) 
+        if (isGrounded || isOnWall) 
             coyoteTimeCounter = coyoteTime;
         else 
             coyoteTimeCounter -= Time.deltaTime; 
@@ -199,6 +215,7 @@ public class Player : MonoBehaviour
     void ExecuteJump()
     {
         jumpsRemaining--;
+        if (jumpsRemaining < 0) {return;}
         if (audioSource != null) {
             audioSource.Play();
         }
@@ -209,7 +226,6 @@ public class Player : MonoBehaviour
     {
         rb.position = startingPos;
         rb.velocity = Vector2.zero;
-        SceneManager.LoadScene(0);
     }
     public void TeleportTo(Vector3 position) {
         rb.position = position;
