@@ -26826,6 +26826,10 @@ PrefabInstance:
       value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 3804997844956455107, guid: bffc40b4847b4b54ca1971cc993dfb9a, type: 3}
+      propertyPath: acceleration
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3804997844956455107, guid: bffc40b4847b4b54ca1971cc993dfb9a, type: 3}
       propertyPath: jumpBufferTime
       value: 5
       objectReference: {fileID: 0}
@@ -26833,6 +26837,14 @@ PrefabInstance:
       propertyPath: leftWallSensor
       value: 
       objectReference: {fileID: 3804997843740704501}
+    - target: {fileID: 3804997844956455107, guid: bffc40b4847b4b54ca1971cc993dfb9a, type: 3}
+      propertyPath: airAcceleration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3804997844956455107, guid: bffc40b4847b4b54ca1971cc993dfb9a, type: 3}
+      propertyPath: airDeceleration
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3804997844956455107, guid: bffc40b4847b4b54ca1971cc993dfb9a, type: 3}
       propertyPath: rightWallSensor
       value: 

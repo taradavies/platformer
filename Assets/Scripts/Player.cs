@@ -29,6 +29,10 @@ public class Player : MonoBehaviour
     [Header("Movement")]
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float slipFactor;
+    [SerializeField] float acceleration = 25f;
+    [SerializeField] float deceleration = 25f;
+    [SerializeField] float airDeceleration;
+    [SerializeField] float airAcceleration;
 
     [Header("Jump")]
     [SerializeField] float jumpForce = 200f;
@@ -154,10 +158,17 @@ public class Player : MonoBehaviour
 
     void MoveHorizontal()
     {
+        float tightControlMultiplier = horizontalInput == 0 ? deceleration : acceleration;
+
+        if (!isGrounded) {
+            tightControlMultiplier = horizontalInput == 0 ? airDeceleration : airAcceleration;
+        }
+        
         var newHorizontal = Mathf.Lerp(
             rb.velocity.x,
             horizontalInput * moveSpeed,
-            Time.deltaTime);
+            Time.deltaTime * tightControlMultiplier);
+
         rb.velocity = new Vector2(newHorizontal, rb.velocity.y);
     }
 
