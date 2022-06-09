@@ -11,7 +11,14 @@ public class Player : MonoBehaviour
     [Header("Ground Check")]
     [SerializeField] Transform groundCheck;
     [SerializeField] float radius = 0.2f;
-    [SerializeField] LayerMask mask;
+    [SerializeField] LayerMask groundMask;
+
+    [Header("Wall Slide")]
+    [SerializeField] LayerMask wallMask;
+    [SerializeField] float distanceFromWall = 0.02f;
+    [SerializeField] Transform rightWallSensor;
+    [SerializeField] Transform leftWallSensor;
+    [SerializeField] float wallSlideSpeed = 2f;
 
     [Header("Coyote Time & Jump Buffer")]
     [SerializeField] float coyoteTime = 0.2f;
@@ -28,6 +35,7 @@ public class Player : MonoBehaviour
     [SerializeField] float jumpForce = 200f;
     [SerializeField] int extraJumps;
     int jumpsRemaining;
+
     Rigidbody2D rb;
     Animator controller;
     SpriteRenderer spriteRenderer;
@@ -63,12 +71,17 @@ public class Player : MonoBehaviour
 
         // read player input and move 
         horizontalInput = Input.GetAxis(horizontalInputAxes);
+        
         if (platformIsSlippery) 
             Slip();
+        else if (ShouldSlide()) 
+            Slide();
+        
         else 
             MoveHorizontal();
 
         // coyote time and jump buffer
+        
         IncrementCoyoteTimer();
         IncrementJumpBufferCounter();
 
@@ -96,6 +109,27 @@ public class Player : MonoBehaviour
             VariableJump();
         }
 
+    }
+
+    private void Slide()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
+        UpdateAnimator();
+    }
+
+    private bool ShouldSlide()
+    {
+        if (isGrounded) {return false;}
+
+        if (horizontalInput > 0) {
+            var rightWallSensorHit = Physics2D.OverlapCircle(rightWallSensor.position, distanceFromWall, wallMask);
+            return rightWallSensorHit != null;
+        }
+        else if (horizontalInput < 0) {
+            var leftWallSensorHit = Physics2D.OverlapCircle(leftWallSensor.position, distanceFromWall, wallMask);
+            return leftWallSensorHit != null;
+        }
+        return false;
     }
 
     void MoveHorizontal()
@@ -131,13 +165,14 @@ public class Player : MonoBehaviour
     bool ShouldDoubleJump() => Input.GetButtonDown(jumpInputAxes) && jumpsRemaining > 0;
     bool ShouldVariableJump() => Input.GetButtonUp(jumpInputAxes) && rb.velocity.y > 0f;
     void IsGrounded() {
-        var ground = Physics2D.OverlapCircle(groundCheck.position, radius, mask); 
+        var ground = Physics2D.OverlapCircle(groundCheck.position, radius, groundMask); 
         isGrounded = ground;
         platformIsSlippery = ground?.CompareTag("Slippery") ?? false;
     }
     void UpdateAnimator() {
         controller.SetBool("isWalking", isWalking); 
         controller.SetBool("Jump", ShouldContinueJump());
+        controller.SetBool("Slide", ShouldSlide());
     }
 
     bool ShouldContinueJump()
