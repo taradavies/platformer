@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -173,6 +174,7 @@ public class Player : MonoBehaviour
     {
         rb.position = startingPos;
         rb.velocity = Vector2.zero;
+        SceneManager.LoadScene(0);
     }
     public void TeleportTo(Vector3 position) {
         rb.position = position;

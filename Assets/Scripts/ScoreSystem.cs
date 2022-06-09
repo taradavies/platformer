@@ -7,18 +7,20 @@ public class ScoreSystem : MonoBehaviour
 
     // uint allows large numbers but no negatives
     // long is a HUGE integer
-    static int score;
+    public static int Score { get; private set; }
+
     static int highScore;
 
     void Awake() {
         highScore = PlayerPrefs.GetInt("highscore");
+        Score = 0;
     }
     public static void AddScore(int points) {
-        score += points;
-        OnScoreChanged?.Invoke(score);
+        Score += points;
+        OnScoreChanged?.Invoke(Score);
 
-        if (score > highScore) {
-            highScore = score;
+        if (Score > highScore) {
+            highScore = Score;
             PlayerPrefs.SetInt("highscore", highScore);
             Debug.Log("New highscore: " + highScore);
         }
