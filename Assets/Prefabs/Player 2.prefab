@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1539556943708087240}
   - component: {fileID: 1539556943708087241}
   - component: {fileID: 942543439}
+  - component: {fileID: 1073670310}
   m_Layer: 6
   m_Name: Player 2
   m_TagString: Untagged
@@ -264,6 +265,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1073670310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539556943708087238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca14265516479224aa95201913dcf719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireballPrefab: {fileID: 2136460404973139491, guid: 9ac5c257c01022240812cd23120529e7, type: 3}
+  fireDelay: 1
 --- !u!1 &1539556944013186829
 GameObject:
   m_ObjectHideFlags: 0

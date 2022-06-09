@@ -10,8 +10,15 @@ public class Fireball : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
+
+    public float Direction { get; set; }
+
     void Update()
     {
-        rb.velocity = Vector2.right * moveSpeed;
+        rb.velocity = Vector2.right * moveSpeed * Direction;
+    }
+    
+    void OnCollisionEnter2D(Collision2D collision) {
+        Destroy(gameObject);
     }
 }
