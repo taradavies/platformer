@@ -14,7 +14,7 @@ public class CoinBox : HittableFromAbove
         remainingCoins = totalCoins;
     }
 
-    protected override void UseBox() {
+    protected override void Use() {
         Coin.coinsCollected++;
         remainingCoins --;
     }

@@ -10,7 +10,7 @@ public class ItemBox : HittableFromAbove
     bool usedItem = false;
 
     protected override bool canUse => !usedItem && itemPrefab != null;
-    protected override void UseBox()
+    protected override void Use()
     {
         item = Instantiate(
             itemPrefab, 

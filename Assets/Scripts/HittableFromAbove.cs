@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HittableFromAbove : MonoBehaviour
+public abstract class HittableFromAbove : MonoBehaviour
 {
     [SerializeField] protected Sprite usedSprite;
     Animator controller;
@@ -24,7 +24,7 @@ public class HittableFromAbove : MonoBehaviour
             if (collisionNormal.y > 0 && canUse) {
                 PlayAudio();
                 PlayAnimation();
-                UseBox();
+                Use();
                 if (!canUse) {
                     TurnOffSprite();
                 }
@@ -50,7 +50,6 @@ public class HittableFromAbove : MonoBehaviour
     }
 
     // virtual allows the method to be overriden
-    protected virtual void UseBox() {
-        
-    }
+    // abstract makes each child class implement this method
+    protected abstract void Use();
 }
